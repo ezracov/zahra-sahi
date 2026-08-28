@@ -34,7 +34,7 @@
             max-width: 800px;
         }
 
-        /* Sticky Header Control Container */
+        /* 1. Sticky Header Control Container */
         .sticky-header {
             position: sticky;
             top: 0;
@@ -110,14 +110,14 @@
             border-color: var(--accent-green);
         }
 
-        /* Table Structure & Sticky Table Header */
+        /* 2. Table Structure */
         .table-wrapper {
             background-color: var(--card-dark);
             border-radius: 8px;
             border: 1px solid var(--border-color);
             box-shadow: 0 4px 15px rgba(0,0,0,0.5);
             margin-top: 8px;
-            overflow-x: hidden;
+            /* overflow-x DIHAPUS agar position: sticky pada TH berfungsi */
         }
 
         table {
@@ -135,7 +135,7 @@
             font-size: 0.85rem;
         }
 
-        /* Penyesuaian offset posisi Sticky TH agar pas di bawah Sticky Header */
+        /* Fix Sticky Table Header */
         th {
             background-color: #181818;
             color: var(--accent-green);
@@ -144,7 +144,7 @@
             font-size: 0.75rem;
             letter-spacing: 0.5px;
             position: sticky;
-            top: 125px; /* Disesuaikan agar menempel pas di bawah controls pada mobile */
+            top: 154px; /* Posisi presisi menempel di bawah sticky-header pada Mobile */
             z-index: 90;
             box-shadow: 0 2px 5px rgba(0,0,0,0.5);
         }
@@ -239,7 +239,7 @@
             color: #000;
         }
 
-        /* Penyesuaian Offset Sticky Header pada Desktop */
+        /* Resposive Layout Desktop */
         @media (min-width: 600px) {
             .controls {
                 flex-direction: row;
@@ -251,7 +251,7 @@
                 flex: 3;
             }
             th {
-                top: 105px; /* Offset disesuaikan ketika kontrol berjajar horizontal */
+                top: 108px; /* Posisi presisi pada layar Desktop */
             }
             th, td {
                 padding: 12px 14px;
