@@ -133,7 +133,6 @@
             border-bottom: 1px solid var(--border-color);
         }
 
-        /* Menjadikan Table Header Sticky tepat di bawah .sticky-header */
         th {
             background-color: #181818;
             color: var(--accent-green);
@@ -142,7 +141,7 @@
             font-size: 0.85rem;
             letter-spacing: 0.5px;
             position: sticky;
-            top: 195px; /* Sesuaikan offset dengan tinggi sticky-header di HP */
+            top: 195px;
             z-index: 90;
             box-shadow: 0 2px 5px rgba(0,0,0,0.5);
         }
@@ -188,7 +187,31 @@
             font-weight: bold;
         }
 
-        /* Penyesuaian offset sticky TH untuk layar desktop */
+        /* Style Tambahan untuk Tombol Hadiah */
+        .btn-hadiah {
+            display: inline-block;
+            margin-top: 4px;
+            padding: 3px 8px;
+            font-size: 0.75rem;
+            background-color: transparent;
+            color: var(--accent-green);
+            border: 1px solid var(--accent-green);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-hadiah:hover {
+            background-color: var(--accent-green);
+            color: #000;
+        }
+
+        .name-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
         @media (min-width: 600px) {
             .controls {
                 flex-direction: row;
@@ -200,7 +223,7 @@
                 flex: 3;
             }
             th {
-                top: 135px; /* Offset lebih pendek karena kontrol sejajar horizontal */
+                top: 135px;
             }
         }
     </style>
@@ -208,7 +231,6 @@
 <body>
 
 <div class="container">
-    <!-- Main Sticky Controls Container -->
     <div class="sticky-header">
         <header>
             <h1>Klasemen Sementara</h1>
@@ -226,7 +248,6 @@
         </div>
     </div>
 
-    <!-- Table Container -->
     <div class="table-wrapper">
         <table id="dataTable">
             <thead>
@@ -294,10 +315,16 @@
             );
 
             filteredData.forEach(item => {
+                const hadiahText = item.hadiah || 'Belum ada hadiah';
                 body.innerHTML += `
                     <tr>
                         <td style="text-align: center;"><span class="rank-badge">${item.rank}</span></td>
-                        <td style="font-weight: 600;">${item.pangkalan}</td>
+                        <td>
+                            <div class="name-wrapper">
+                                <span style="font-weight: 600;">${item.pangkalan}</span>
+                                <button class="btn-hadiah" onclick="lihatHadiah('${item.pangkalan}', '${hadiahText}')">Lihat Hadiah</button>
+                            </div>
+                        </td>
                         <td style="text-align: right;" class="poin-highlight">${item.poin}</td>
                     </tr>
                 `;
@@ -316,16 +343,26 @@
             );
 
             filteredData.forEach(item => {
+                const hadiahText = item.hadiah || 'Belum ada hadiah';
                 body.innerHTML += `
                     <tr>
                         <td style="text-align: center;"><span class="rank-badge">${item.rank}</span></td>
-                        <td style="font-weight: 600;">${item.nama}</td>
+                        <td>
+                            <div class="name-wrapper">
+                                <span style="font-weight: 600;">${item.nama}</span>
+                                <button class="btn-hadiah" onclick="lihatHadiah('${item.nama}', '${hadiahText}')">Lihat Hadiah</button>
+                            </div>
+                        </td>
                         <td style="color: var(--text-muted);">${item.pangkalan}</td>
                         <td style="text-align: right;" class="poin-highlight">${item.poin}</td>
                     </tr>
                 `;
             });
         }
+    }
+
+    function lihatHadiah(nama, hadiah) {
+        alert(`Hadiah untuk ${nama}:\n🎁 ${hadiah}`);
     }
 
     function filterData() {
