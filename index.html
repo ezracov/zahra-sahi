@@ -24,7 +24,7 @@
         body {
             background-color: var(--bg-dark);
             color: var(--text-main);
-            padding: 0 10px 20px 10px;
+            padding: 0 8px 20px 8px;
             display: flex;
             justify-content: center;
         }
@@ -34,55 +34,56 @@
             max-width: 800px;
         }
 
-        /* 1. Sticky Header untuk Judul + Tab + Search */
+        /* Sticky Header */
         .sticky-header {
             position: sticky;
             top: 0;
             background-color: var(--bg-dark);
-            padding-top: 20px;
-            padding-bottom: 15px;
+            padding-top: 15px;
+            padding-bottom: 12px;
             z-index: 100;
         }
 
         header {
             text-align: center;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
 
         header h1 {
             color: var(--accent-green);
-            font-size: 1.8rem;
-            margin-bottom: 5px;
+            font-size: 1.5rem;
+            margin-bottom: 2px;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
         }
 
         header p {
             color: var(--text-muted);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
 
         .controls {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 10px;
         }
 
         .tabs {
             display: flex;
             background-color: var(--card-dark);
             border-radius: 8px;
-            padding: 4px;
+            padding: 3px;
             border: 1px solid var(--border-color);
         }
 
         .tab-btn {
             flex: 1;
-            padding: 12px;
+            padding: 10px;
             border: none;
             background: transparent;
             color: var(--text-muted);
             font-weight: 600;
+            font-size: 0.9rem;
             cursor: pointer;
             border-radius: 6px;
             transition: all 0.3s ease;
@@ -93,17 +94,14 @@
             color: #000;
         }
 
-        .search-box {
-            width: 100%;
-        }
-
         .search-box input {
             width: 100%;
-            padding: 12px 16px;
+            padding: 10px 14px;
             background-color: var(--card-dark);
             border: 1px solid var(--border-color);
             border-radius: 8px;
             color: var(--text-main);
+            font-size: 0.9rem;
             outline: none;
             transition: border-color 0.3s ease;
         }
@@ -112,13 +110,14 @@
             border-color: var(--accent-green);
         }
 
-        /* 2. Table Structure & Sticky Table Header */
+        /* Table Structure */
         .table-wrapper {
             background-color: var(--card-dark);
             border-radius: 8px;
             border: 1px solid var(--border-color);
             box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-            margin-top: 10px;
+            margin-top: 8px;
+            overflow-x: hidden; /* Mencegah overflow */
         }
 
         table {
@@ -126,11 +125,14 @@
             border-collapse: separate;
             border-spacing: 0;
             text-align: left;
+            table-layout: fixed; /* Memaksa kolom tetap pada ukurannya */
         }
 
         th, td {
-            padding: 14px 16px;
+            padding: 10px 8px;
             border-bottom: 1px solid var(--border-color);
+            vertical-align: middle;
+            font-size: 0.85rem;
         }
 
         th {
@@ -138,10 +140,10 @@
             color: var(--accent-green);
             font-weight: 600;
             text-transform: uppercase;
-            font-size: 0.85rem;
+            font-size: 0.75rem;
             letter-spacing: 0.5px;
             position: sticky;
-            top: 195px;
+            top: 165px;
             z-index: 90;
             box-shadow: 0 2px 5px rgba(0,0,0,0.5);
         }
@@ -156,13 +158,13 @@
 
         .rank-badge {
             display: inline-block;
-            width: 28px;
-            height: 28px;
-            line-height: 28px;
+            width: 24px;
+            height: 24px;
+            line-height: 24px;
             text-align: center;
             border-radius: 50%;
             font-weight: bold;
-            font-size: 0.85rem;
+            font-size: 0.75rem;
             background-color: #2a2a2a;
             color: var(--text-main);
         }
@@ -185,26 +187,49 @@
         .poin-highlight {
             color: var(--accent-green);
             font-weight: bold;
+            font-size: 0.9rem;
         }
 
-        /* Style untuk Pembungkus Nama + Tombol Hadiah di Kanan */
+        /* Layout Compact untuk Nama + Pangkalan + Tombol Hadiah */
         .name-wrapper {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 10px;
+            gap: 6px;
             width: 100%;
         }
 
-        .btn-hadiah {
-            padding: 4px 8px;
+        .name-info {
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .name-title {
+            font-weight: 600;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .sub-pangkalan {
             font-size: 0.72rem;
+            color: var(--text-muted);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .btn-hadiah {
+            padding: 3px 6px;
+            font-size: 0.7rem;
             background-color: transparent;
             color: var(--accent-green);
             border: 1px solid var(--accent-green);
             border-radius: 4px;
             cursor: pointer;
             white-space: nowrap;
+            flex-shrink: 0; /* Mencegah tombol mengecil/terdistorsi */
             transition: all 0.2s ease;
         }
 
@@ -224,7 +249,11 @@
                 flex: 3;
             }
             th {
-                top: 135px;
+                top: 115px;
+            }
+            th, td {
+                padding: 12px 14px;
+                font-size: 0.9rem;
             }
         }
     </style>
@@ -277,7 +306,7 @@
             console.error('Gagal memuat data JSON:', error);
             document.getElementById('tableBody').innerHTML = `
                 <tr>
-                    <td colspan="4" style="text-align: center; color: #ff5555; padding: 20px;">
+                    <td colspan="3" style="text-align: center; color: #ff5555; padding: 20px;">
                         Gagal memuat data. Pastikan berkas JSON berada dalam folder yang sama.
                     </td>
                 </tr>`;
@@ -306,9 +335,9 @@
 
         if (currentTab === 'group') {
             header.innerHTML = `
-                <th style="width: 70px; text-align: center;">Rank</th>
+                <th style="width: 45px; text-align: center;">Rank</th>
                 <th>Pangkalan</th>
-                <th style="width: 100px; text-align: right;">Poin</th>
+                <th style="width: 75px; text-align: right;">Poin</th>
             `;
 
             const filteredData = groupData.filter(item => 
@@ -322,8 +351,10 @@
                         <td style="text-align: center;"><span class="rank-badge">${item.rank}</span></td>
                         <td>
                             <div class="name-wrapper">
-                                <span style="font-weight: 600;">${item.pangkalan}</span>
-                                <button class="btn-hadiah" onclick="lihatHadiah('${item.pangkalan}', '${hadiahText}')">Lihat Hadiah</button>
+                                <div class="name-info">
+                                    <span class="name-title">${item.pangkalan}</span>
+                                </div>
+                                <button class="btn-hadiah" onclick="lihatHadiah('${item.pangkalan}', '${hadiahText}')">🎁 Hadiah</button>
                             </div>
                         </td>
                         <td style="text-align: right;" class="poin-highlight">${item.poin}</td>
@@ -331,11 +362,11 @@
                 `;
             });
         } else {
+            // Kolom dibuat 3 agar sangat pas di layar HP (Pangkalan dimasukkan ke sub-teks di bawah Nama)
             header.innerHTML = `
-                <th style="width: 70px; text-align: center;">Rank</th>
-                <th>Nama</th>
-                <th>Pangkalan</th>
-                <th style="width: 100px; text-align: right;">Poin</th>
+                <th style="width: 45px; text-align: center;">Rank</th>
+                <th>Nama & Pangkalan</th>
+                <th style="width: 75px; text-align: right;">Poin</th>
             `;
 
             const filteredData = personalData.filter(item => 
@@ -350,11 +381,13 @@
                         <td style="text-align: center;"><span class="rank-badge">${item.rank}</span></td>
                         <td>
                             <div class="name-wrapper">
-                                <span style="font-weight: 600;">${item.nama}</span>
-                                <button class="btn-hadiah" onclick="lihatHadiah('${item.nama}', '${hadiahText}')">Lihat Hadiah</button>
+                                <div class="name-info">
+                                    <span class="name-title">${item.nama}</span>
+                                    <span class="sub-pangkalan">${item.pangkalan}</span>
+                                </div>
+                                <button class="btn-hadiah" onclick="lihatHadiah('${item.nama}', '${hadiahText}')">🎁 Hadiah</button>
                             </div>
                         </td>
-                        <td style="color: var(--text-muted);">${item.pangkalan}</td>
                         <td style="text-align: right;" class="poin-highlight">${item.poin}</td>
                     </tr>
                 `;
