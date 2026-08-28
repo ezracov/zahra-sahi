@@ -34,13 +34,13 @@
             max-width: 800px;
         }
 
-        /* Sticky Header */
+        /* Sticky Header Control Container */
         .sticky-header {
             position: sticky;
             top: 0;
             background-color: var(--bg-dark);
             padding-top: 15px;
-            padding-bottom: 12px;
+            padding-bottom: 10px;
             z-index: 100;
         }
 
@@ -110,14 +110,14 @@
             border-color: var(--accent-green);
         }
 
-        /* Table Structure */
+        /* Table Structure & Sticky Table Header */
         .table-wrapper {
             background-color: var(--card-dark);
             border-radius: 8px;
             border: 1px solid var(--border-color);
             box-shadow: 0 4px 15px rgba(0,0,0,0.5);
             margin-top: 8px;
-            overflow-x: hidden; /* Mencegah overflow */
+            overflow-x: hidden;
         }
 
         table {
@@ -125,7 +125,7 @@
             border-collapse: separate;
             border-spacing: 0;
             text-align: left;
-            table-layout: fixed; /* Memaksa kolom tetap pada ukurannya */
+            table-layout: fixed;
         }
 
         th, td {
@@ -135,6 +135,7 @@
             font-size: 0.85rem;
         }
 
+        /* Penyesuaian offset posisi Sticky TH agar pas di bawah Sticky Header */
         th {
             background-color: #181818;
             color: var(--accent-green);
@@ -143,7 +144,7 @@
             font-size: 0.75rem;
             letter-spacing: 0.5px;
             position: sticky;
-            top: 165px;
+            top: 125px; /* Disesuaikan agar menempel pas di bawah controls pada mobile */
             z-index: 90;
             box-shadow: 0 2px 5px rgba(0,0,0,0.5);
         }
@@ -229,7 +230,7 @@
             border-radius: 4px;
             cursor: pointer;
             white-space: nowrap;
-            flex-shrink: 0; /* Mencegah tombol mengecil/terdistorsi */
+            flex-shrink: 0;
             transition: all 0.2s ease;
         }
 
@@ -238,6 +239,7 @@
             color: #000;
         }
 
+        /* Penyesuaian Offset Sticky Header pada Desktop */
         @media (min-width: 600px) {
             .controls {
                 flex-direction: row;
@@ -249,7 +251,7 @@
                 flex: 3;
             }
             th {
-                top: 115px;
+                top: 105px; /* Offset disesuaikan ketika kontrol berjajar horizontal */
             }
             th, td {
                 padding: 12px 14px;
@@ -362,7 +364,6 @@
                 `;
             });
         } else {
-            // Kolom dibuat 3 agar sangat pas di layar HP (Pangkalan dimasukkan ke sub-teks di bawah Nama)
             header.innerHTML = `
                 <th style="width: 45px; text-align: center;">Rank</th>
                 <th>Nama & Pangkalan</th>
